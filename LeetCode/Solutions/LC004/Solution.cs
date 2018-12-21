@@ -1,11 +1,12 @@
 ﻿using System;
 
 /// <summary>
+/// https://leetcode.com/problems/median-of-two-sorted-arrays/
 /// Find the median of the two sorted arrays.
 /// The overall run time complexity should be O(log (m+n))
 /// </summary>
 
-// This is an O(m+n) solution
+// This is an O(m + n) solution
 // Basically, just make sure there are 2 numbers being removed in each iteration
 // And end when there are less than 2 numbers left
 
