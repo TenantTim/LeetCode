@@ -10,6 +10,8 @@ using LeetCode.Utils;
 ///   (1->2->3->4->5, 2) => 1->2->3->5
 /// </summary>
 
+// For counting problem through a LinkedList, a fast/slow iterator pair is efficient
+
 namespace LeetCode.Solutions.LC019
 {
    public class Solution
