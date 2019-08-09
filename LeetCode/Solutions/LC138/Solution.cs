@@ -12,49 +12,49 @@ using LeetCode.Utils;
 
 namespace LeetCode.Solutions.LC138
 {
-   public class Solution
-   {
-      public RandomListNode CopyRandomList( RandomListNode head )
-      {
-         if( head == null )
-            return null;
+    public class Solution
+    {
+        public RandomListNode CopyRandomList(RandomListNode head)
+        {
+            if (head == null)
+                return null;
 
-         Dictionary<RandomListNode, RandomListNode> m_dupMap = new Dictionary<RandomListNode, RandomListNode>();
+            Dictionary<RandomListNode, RandomListNode> m_dupMap = new Dictionary<RandomListNode, RandomListNode>();
 
-         RandomListNode oldIter = head, oldHead = head;
-         RandomListNode newIter = null, newHead = new RandomListNode( head.label );
+            RandomListNode oldIter = head, oldHead = head;
+            RandomListNode newIter = null, newHead = new RandomListNode(head.label);
 
-         while( oldIter != null )
-         {
-            if( newIter == null )
-               newIter = newHead;
-
-            m_dupMap[ oldIter ] = newIter;
-
-            if( oldIter.next != null )
+            while (oldIter != null)
             {
-               newIter.next = new RandomListNode( oldIter.next.label );
-               newIter = newIter.next;
+                if (newIter == null)
+                    newIter = newHead;
+
+                m_dupMap[oldIter] = newIter;
+
+                if (oldIter.next != null)
+                {
+                    newIter.next = new RandomListNode(oldIter.next.label);
+                    newIter = newIter.next;
+                }
+
+                oldIter = oldIter.next;
             }
 
-            oldIter = oldIter.next;
-         }
+            oldIter = oldHead;
+            newIter = newHead;
 
-         oldIter = oldHead;
-         newIter = newHead;
+            while (oldIter != null)
+            {
+                if (oldIter.random == null)
+                    newIter.random = null;
+                else
+                    newIter.random = m_dupMap[oldIter.random];
 
-         while( oldIter != null )
-         {
-            if( oldIter.random == null )
-               newIter.random = null;
-            else
-               newIter.random = m_dupMap[ oldIter.random ];
+                oldIter = oldIter.next;
+                newIter = newIter.next;
+            }
 
-            oldIter = oldIter.next;
-            newIter = newIter.next;
-         }
-
-         return newHead;
-      }
-   }
+            return newHead;
+        }
+    }
 }

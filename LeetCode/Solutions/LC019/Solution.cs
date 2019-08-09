@@ -14,28 +14,28 @@ using LeetCode.Utils;
 
 namespace LeetCode.Solutions.LC019
 {
-   public class Solution
-   {
-      public ListNode RemoveNthFromEnd( ListNode head, int n )
-      {
-         var fast = head;
-         var slow = head;
-         for( int i = 0; i < n; i++ )
-         {
-            fast = fast.next;
-         }
+    public class Solution
+    {
+        public ListNode RemoveNthFromEnd(ListNode head, int n)
+        {
+            var fast = head;
+            var slow = head;
+            for (int i = 0; i < n; i++)
+            {
+                fast = fast.next;
+            }
 
-         // Keypoint: Handle the case if we're removing the first node
-         if( fast == null )
-            return head.next;
+            // Keypoint: Handle the case if we're removing the first node
+            if (fast == null)
+                return head.next;
 
-         while( fast.next != null )
-         {
-            fast = fast.next;
-            slow = slow.next;
-         }
-         slow.next = slow.next.next;
-         return head;
-      }
-   }
+            while (fast.next != null)
+            {
+                fast = fast.next;
+                slow = slow.next;
+            }
+            slow.next = slow.next.next;
+            return head;
+        }
+    }
 }

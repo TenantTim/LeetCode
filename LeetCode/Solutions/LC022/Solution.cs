@@ -17,33 +17,33 @@
 
 namespace LeetCode.Solutions.LC022
 {
-   public class Solution
-   {
-      public IList<string> GenerateParenthesis( int n )
-      {
-         IList<string> result = new List<string>();
+    public class Solution
+    {
+        public IList<string> GenerateParenthesis(int n)
+        {
+            IList<string> result = new List<string>();
 
-         GenerateParenthesis( 0, 0, n, "", result );
+            GenerateParenthesis(0, 0, n, "", result);
 
-         return result;
-      }
+            return result;
+        }
 
-      private void GenerateParenthesis( int currentLefts, int currentRights, int sum, string currentStr, IList<string> result )
-      {
-         if( currentRights == sum )
-         {
-            result.Add( currentStr );
-         }
+        private void GenerateParenthesis(int currentLefts, int currentRights, int sum, string currentStr, IList<string> result)
+        {
+            if (currentRights == sum)
+            {
+                result.Add(currentStr);
+            }
 
-         if( currentLefts < sum )
-         {
-            GenerateParenthesis( currentLefts + 1, currentRights, sum, currentStr + "(", result );
-         }
+            if (currentLefts < sum)
+            {
+                GenerateParenthesis(currentLefts + 1, currentRights, sum, currentStr + "(", result);
+            }
 
-         if( currentLefts > currentRights )
-         {
-            GenerateParenthesis( currentLefts, currentRights + 1, sum, currentStr + ")", result );
-         }
-      }
-   }
+            if (currentLefts > currentRights)
+            {
+                GenerateParenthesis(currentLefts, currentRights + 1, sum, currentStr + ")", result);
+            }
+        }
+    }
 }

@@ -13,9 +13,9 @@ using System.Text;
 
 namespace LeetCode.Solutions.LC017
 {
-   public class Solution
-   {
-      static Dictionary<char, List<char>> dict = new Dictionary<char, List<char>>
+    public class Solution
+    {
+        static Dictionary<char, List<char>> dict = new Dictionary<char, List<char>>
        {
          {'2', new List<char> { 'a', 'b','c' }},
          {'3', new List<char> { 'd', 'e','f' }},
@@ -27,35 +27,35 @@ namespace LeetCode.Solutions.LC017
          {'9', new List<char> { 'w','x','y','z' }},
        };
 
-      public IList<string> LetterCombinations( string digits )
-      {
+        public IList<string> LetterCombinations(string digits)
+        {
 
-         List<string> result = new List<string>();
+            List<string> result = new List<string>();
 
-         foreach( char c in digits.ToCharArray() )
-         {
-            if( result.Count == 0 )
+            foreach (char c in digits.ToCharArray())
             {
-               dict[ c ].ForEach( ch => result.Add( ch.ToString() ) );
+                if (result.Count == 0)
+                {
+                    dict[c].ForEach(ch => result.Add(ch.ToString()));
+                }
+                else
+                {
+                    int currentCount = result.Count;
+                    dict[c].ForEach(ch =>
+                 {
+                     for (int i = 0; i < currentCount; i++)
+                     {
+                         result.Add(string.Concat(result[i], ch.ToString()));
+                     }
+                 });
+                    for (int i = currentCount - 1; i >= 0; i--)
+                    {
+                        result.RemoveAt(i);
+                    }
+                }
             }
-            else
-            {
-               int currentCount = result.Count;
-               dict[ c ].ForEach( ch =>
-               {
-                  for( int i = 0; i < currentCount; i++ )
-                  {
-                     result.Add( string.Concat( result[ i ], ch.ToString() ) );
-                  }
-               } );
-               for( int i = currentCount - 1; i >= 0; i-- )
-               {
-                  result.RemoveAt( i );
-               }
-            }
-         }
 
-         return result;
-      }
-   }
+            return result;
+        }
+    }
 }
