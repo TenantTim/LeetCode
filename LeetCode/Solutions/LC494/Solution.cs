@@ -16,46 +16,32 @@ namespace LeetCode.Solutions.LC494
 {
     public class Solution
     {
-
-        private int result;
-
         public int FindTargetSumWays(int[] nums, int S)
         {
-            result = 0;
             int sum = 0;
             for (int i = 0; i < nums.Length; i++)
             {
                 sum += nums[i];
             }
-            if (S > sum || (sum - S) % 2 != 0)
+
+            if (sum < S || (sum - S) % 2 != 0)
             {
                 return 0;
             }
 
-            int target = (sum - S) / 2;
-            FindTarget(nums, 0, target);
-            return result;
+            return FindTargetSum(nums, 0, (sum - S) / 2);
         }
 
-        private bool FindTarget(int[] nums, int current, int target)
+        private int FindTargetSum(int[] nums, int start, int target)
         {
-            if (current == nums.Length)
+            if (start == nums.Length)
             {
-                if (target == 0)
-                {
-                    result++;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return target == 0 ? 1 : 0;
             }
 
-            FindTarget(nums, current + 1, target - nums[current]);
-            FindTarget(nums, current + 1, target);
-
-            return true;
+            return
+                FindTargetSum(nums, start + 1, target - nums[start]) +
+                FindTargetSum(nums, start + 1, target);
         }
     }
 }
