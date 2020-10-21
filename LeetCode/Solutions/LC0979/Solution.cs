@@ -22,7 +22,6 @@ namespace LeetCode.Solutions.LC0979
 
         public int DistributeCoins(TreeNode root)
         {
-
             sum = 0;
             CalcDiff(root);
             return sum;
